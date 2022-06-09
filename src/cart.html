@@ -1,0 +1,84 @@
+<style>
+    table img {
+        width: 50px;
+    }
+    tr{
+        background-color: rgb(63 79 97 / 23%);
+    }
+    td{
+        padding: 3px;
+    }
+    .product-row {
+        background-color: rgba(157, 157, 157, 0.11);
+    }
+    .img-cel{
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
+</style>
+<div class="cart-page">
+    <template class="cart-template">
+        <tr class="product-row">
+            <td class="img-cel">
+                <img src="" alt="">
+            </td>
+            <td class="name-cel"></td>
+            <td class="price-cel"></td>
+            <td class="qty-cel"></td>
+            <td class="sub-cel"></td>
+        </tr>
+    </template>
+
+    <table class="cart-table">
+        <tr>
+            <th>Imagem</th>
+            <th>Produto</th>
+            <th>Preço Un</th>
+            <th>Quant.</th>
+            <th>Sub Total</th>
+        </tr>
+        
+    </table>
+</div>
+
+<script>
+    async function initialize(){
+        const container = document.querySelector(".cart-table");
+        const template = document.querySelector(".cart-template");
+
+        const cart = await fetch(`/.netlify/functions/cart`)
+            .then((response) => response.json())
+            .then((res) => displaycart(res))
+            .catch((e) => console.error(e));
+
+        // if(cart) {
+        //     displaycart(cart);
+        // }
+        function displaycart(cart) {
+            cart.itens.forEach(item => {
+                fetch(`/.netlify/functions/product-by-id?id=${item.pid}`)
+                    .then((response) => response.json())
+                    .then((res) => displayProduct(res, item.qty))
+                    .catch((e) => console.error(e));
+            });
+
+        }
+
+        function displayProduct(product, qty) {
+            const element = template.content.cloneNode(true);
+            
+            element.querySelector(".img-cel img").src = product.img;
+            element.querySelector(".img-cel img").alt = product.name;
+
+            element.querySelector(".name-cel").innerText = product.name.toUpperCase();
+            element.querySelector(".price-cel").innerText = `R$ ${product.price},00`;
+            element.querySelector(".qty-cel").innerText = qty;
+            element.querySelector(".sub-cel").innerText = `R$ ${product.price * qty},00`;
+            
+            container.appendChild(element);
+        }
+    }
+    
+    initialize()
+</script>

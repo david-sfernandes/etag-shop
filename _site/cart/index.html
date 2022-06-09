@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tag Shop · Learn With Jason</title>
+    <link rel="stylesheet" href="https://use.typekit.net/jwa3agu.css" />
+    <link rel="stylesheet" href="/css/global.css" />
+  </head>
+  <body>
+    <style>
+  .lwj-demo-header {
+    background: var(--black);
+    font-family: var(--font-family);
+    position: relative;
+    width: 100vw;
+  }
+
+  .lwj-demo-header button {
+    padding: 4px 7px;
+    border-radius: 6px;
+    background: white;
+    border: 0;
+    font-weight: 600;
+  }
+
+  .lwj-demo-header button:hover {
+    background-color: gainsboro;
+  }
+
+  .lwj-demo-header .logo-wrapper {
+    display: grid;
+    height: 56px;
+    padding: 0 1rem;
+    position: relative;
+    width: 100vw;
+    grid-template-columns: auto 100px;
+    align-items: center;
+  }
+
+  .lwj-demo-header .logo {
+    display: block;
+    height: auto;
+    position: relative;
+    transform: rotate(-3deg);
+    transition: transform 250ms ease-out;
+    width: 55px;
+    z-index: 15;
+  }
+
+  .lwj-demo-header .logo::after {
+    background: var(--white);
+    border: 1px solid var(--dark-gray);
+    border-radius: 0.25rem;
+    color: var(--dark-gray);
+    content: 'Check out Learn With Jason!';
+    display: block;
+    left: -0.5rem;
+    opacity: 0;
+    padding: 0.5rem;
+    position: absolute;
+    text-align: center;
+    top: 98%;
+    transition: opacity 300ms linear;
+    width: 230px;
+  }
+
+  .lwj-demo-header .logo:active,
+  .lwj-demo-header .logo:focus,
+  .lwj-demo-header .logo:hover {
+    transform: rotate(0deg);
+  }
+
+  .lwj-demo-header .logo:active::after,
+  .lwj-demo-header .logo:focus::after,
+  .lwj-demo-header .logo:hover::after {
+    opacity: 1;
+  }
+
+  .lwj-demo-header .logo img {
+    display: block;
+    width: 100%;
+  }
+
+  .lwj-demo-header .home-link {
+    color: var(--white);
+    font-size: 1rem;
+    font-weight: 900;
+    margin-left: 0.75rem;
+    position: relative;
+    text-decoration: none;
+    z-index: 15;
+  }
+
+  .lwj-demo-header #canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .lwj-demo-header .top-bar {
+    background-color: var(--blue);
+    border-bottom: 0.5px solid var(--light-gray);
+    height: 5px;
+    position: relative;
+    top: 100%;
+    width: 100vw;
+    z-index: 5;
+  }
+
+  .lwj-demo-header .top-bar::before,
+  .lwj-demo-header .top-bar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100vw;
+  }
+
+  .lwj-demo-header .top-bar::before {
+    bottom: 1px;
+    height: 0.5px;
+    background-color: var(--light-gray);
+  }
+
+  .lwj-demo-header .top-bar::after {
+    bottom: 0;
+    height: 1px;
+    background-color: var(--black);
+  }
+</style>
+
+<header class="lwj-demo-header">
+  <div class="logo-wrapper">
+    <a href="/" rel="home" class="home-link">
+      Tag Shop
+    </a>
+    <a href="#" style="justify-self: end;">
+      <button>Carrinho</button>
+    </a>
+  </div>
+</header>
+
+
+    <main>
+      <style>
+    table img {
+        width: 50px;
+    }
+    tr{
+        background-color: rgb(63 79 97 / 23%);
+    }
+    td{
+        padding: 3px;
+    }
+    .product-row {
+        background-color: rgba(157, 157, 157, 0.11);
+    }
+    .img-cel{
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
+</style>
+<div class="cart-page">
+    <template class="cart-template">
+        <tr class="product-row">
+            <td class="img-cel">
+                <img src="" alt="">
+            </td>
+            <td class="name-cel"></td>
+            <td class="price-cel"></td>
+            <td class="qty-cel"></td>
+            <td class="sub-cel"></td>
+        </tr>
+    </template>
+
+    <table class="cart-table">
+        <tr>
+            <th>Imagem</th>
+            <th>Produto</th>
+            <th>Preço Un</th>
+            <th>Quant.</th>
+            <th>Sub Total</th>
+        </tr>
+        
+    </table>
+</div>
+
+<script>
+    async function initialize(){
+        const container = document.querySelector(".cart-table");
+        const template = document.querySelector(".cart-template");
+
+        const cart = await fetch(`/.netlify/functions/cart`)
+            .then((response) => response.json())
+            .then((res) => displaycart(res))
+            .catch((e) => console.error(e));
+
+        // if(cart) {
+        //     displaycart(cart);
+        // }
+        function displaycart(cart) {
+            cart.itens.forEach(item => {
+                fetch(`/.netlify/functions/product-by-id?id=${item.pid}`)
+                    .then((response) => response.json())
+                    .then((res) => displayProduct(res, item.qty))
+                    .catch((e) => console.error(e));
+            });
+
+        }
+
+        function displayProduct(product, qty) {
+            const element = template.content.cloneNode(true);
+            
+            element.querySelector(".img-cel img").src = product.img;
+            element.querySelector(".img-cel img").alt = product.name;
+
+            element.querySelector(".name-cel").innerText = product.name.toUpperCase();
+            element.querySelector(".price-cel").innerText = `R$ ${product.price},00`;
+            element.querySelector(".qty-cel").innerText = qty;
+            element.querySelector(".sub-cel").innerText = `R$ ${product.price * qty},00`;
+            
+            container.appendChild(element);
+        }
+    }
+    
+    initialize()
+</script>
+
+    </main>
+
+    <style>
+  .lwj-demo-footer {
+    background: var(--black);
+    color: var(--light-gray);
+    font-family: var(--font-family);
+    padding: 1rem 5vw;
+    position: relative;
+    text-align: center;
+    width: 100vw;
+  }
+
+  .lwj-demo-footer a {
+    color: inherit;
+    display: block;
+    font-size: 0.75rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    text-decoration: none;
+  }
+
+  .lwj-demo-footer a:active,
+  .lwj-demo-footer a:focus,
+  .lwj-demo-footer a:hover {
+    color: var(--pink-text);
+  }
+
+  .lwj-demo-footer .bottom-bar {
+    animation: gradient-roll 20s linear infinite alternate;
+    background-image: var(--lwj-gradient);
+    background-size: 200%;
+    border-bottom: 0.5px solid var(--light-gray);
+    bottom: 100%;
+    height: 6px;
+    left: 0;
+    position: absolute;
+    width: 100vw;
+    z-index: 5;
+  }
+
+  .lwj-demo-footer .bottom-bar::before,
+  .lwj-demo-footer .bottom-bar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100vw;
+  }
+
+  .lwj-demo-footer .bottom-bar::before {
+    top: 1px;
+    height: 0.5px;
+    background-color: var(--light-gray);
+  }
+
+  .lwj-demo-footer .bottom-bar::after {
+    top: 0;
+    height: 1px;
+    background-color: var(--black);
+  }
+
+  @media (min-width: 770px) {
+    .lwj-demo-footer {
+      padding-bottom: 0;
+      padding-top: 0;
+    }
+
+    .lwj-demo-footer a {
+      display: inline-block;
+    }
+  }
+</style>
+
+<footer class="lwj-demo-footer">
+  <a href="#">Tag Shop</a>
+</footer>
+
+  </body>
+</html>

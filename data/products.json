@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": "cadeira metálica",
+        "price": 18000,
+        "img": "https://raw.githubusercontent.com/david-sfernandes/productimage/master/cadeira-metalica.jpg",
+        "description": "Cadeira feita em metal na cor preta."
+    },
+    {
+        "id": 2,
+        "name": "cadeiras estampadas",
+        "price": 23000,
+        "img": "https://raw.githubusercontent.com/david-sfernandes/productimage/master/cadeiras-estampadas.jpg",
+        "description": "Cadeiras de madeira com estampas diversas."
+    },
+    {
+        "id": 3,
+        "name": "hack em madeira azul",
+        "price": 54000,
+        "img": "https://raw.githubusercontent.com/david-sfernandes/productimage/master/hack-madeira-azul.jpg",
+        "description": "Hack de madeira com detalhes em branco e azul."
+    },
+    {
+        "id": 4,
+        "name": "mesa de madeira circular",
+        "price": 78200,
+        "img": "https://raw.githubusercontent.com/david-sfernandes/productimage/master/mesa-circular.jpg",
+        "description": "Mesa de tabuas de madeira circular."
+    },
+    {
+        "id": 5,
+        "name": "sofa de couro",
+        "price": 36700,
+        "img": "https://raw.githubusercontent.com/david-sfernandes/productimage/master/sofa-couro.jpg",
+        "description": "Sofá de 2 lugares em couro marrom."
+    },
+    {
+        "id": 6,
+        "name": "sofa de canto preto",
+        "price": 23000,
+        "img": "https://raw.githubusercontent.com/david-sfernandes/productimage/master/sofa-preto.jpg",
+        "description": "Sofa de canto com 5 lugares na cor preta."
+    }
+]
