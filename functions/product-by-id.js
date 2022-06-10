@@ -1,18 +1,23 @@
-const products = require("../data/products.json")
+const { query } = require('./util/hasura');
 
 exports.handler = async ({ queryStringParameters }) => {
     const { id } = queryStringParameters;
-    const product = products.find((p) => p.id == id);
-
-    if(!product) {
-        return {
-            statusCode: 404,
-            body: 'Not Found.'
-        }
-    } else {
-        return {
-            statusCode: 200,
-            body: JSON.stringify(product),
-        }
+    const { products }  = await query({
+        query: `
+            query MyQuery {
+                products(where: {id: {_eq: "${id}"}}) {
+                description
+                id
+                img
+                name
+                price
+                }
+            }
+        `
+    })
+    return {
+        statusCode: 200,
+        body: JSON.stringify(products[0]),
     }
+    
 }
