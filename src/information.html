@@ -95,7 +95,7 @@
 </div>
 
 <script>
-    let totalBasket = 0
+    // let totalBasket = 0
     async function initialize(){
         const container = document.querySelector(".resumo-table");
         const template = document.querySelector(".produto-row-template");
@@ -121,7 +121,7 @@
             element.querySelector(".img-cel img").alt = product.name;
             element.querySelector(".name-cel").innerText = product.name.toUpperCase();
             element.querySelector(".price-cel").innerText = `R$ ${product.price * qty},00`;
-            totalBasket += (product.price * qty);
+            // totalBasket += (product.price * qty);
             
             container.appendChild(element);
         }
