@@ -54,9 +54,18 @@ h6 {
 
 main {
   margin: 4rem auto;
-  max-width: 640px;
   min-height: calc(100vh - 242px);
   width: 90vw;
+}
+
+button {
+  color: white;
+  background-color: var(--blue);
+  padding: 5px;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 1px 1px 3px #0c0c0c7a;
+  font-weight: 600;
 }
 
 @keyframes gradient-roll {

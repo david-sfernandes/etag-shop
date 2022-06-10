@@ -1,0 +1,16 @@
+<div class="confirmation-page">
+    <h1>Parabéns! Sua <b>compra falsa</b> foi "concluida".</h1>
+    <p>Não espere sua compra... Ela nunca será entregue!</p>
+
+    <section class="order-details">
+        <h3>Detalhes do seu pedido</h3>
+        <h2 class="order-number" id="order-number"></h2>
+        <p>Valor total: <span class="total-basket"><b>R$ 334600,00</b></span></p>
+    </section>
+</div>
+
+<script>
+    function initialize() {
+        document.querySelector("#order-number").innerText = Math.floor(Math.random() * 10000);
+    }
+</script>

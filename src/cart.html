@@ -38,8 +38,15 @@
             <th>Quant.</th>
             <th>Sub Total</th>
         </tr>
-        
     </table>
+    <div class="total-basket-row">
+        <h4>Total: </h4>
+        <h4 id="total-basket">R$ 334600,00</h4>
+    </div>
+
+    <a href="../information">
+        <button>Concluir o pedido</button>
+    </a>
 </div>
 
 <script>
@@ -52,9 +59,6 @@
             .then((res) => displaycart(res))
             .catch((e) => console.error(e));
 
-        // if(cart) {
-        //     displaycart(cart);
-        // }
         function displaycart(cart) {
             cart.itens.forEach(item => {
                 fetch(`/.netlify/functions/product-by-id?id=${item.pid}`)
@@ -62,7 +66,6 @@
                     .then((res) => displayProduct(res, item.qty))
                     .catch((e) => console.error(e));
             });
-
         }
 
         function displayProduct(product, qty) {
@@ -75,7 +78,6 @@
             element.querySelector(".price-cel").innerText = `R$ ${product.price},00`;
             element.querySelector(".qty-cel").innerText = qty;
             element.querySelector(".sub-cel").innerText = `R$ ${product.price * qty},00`;
-            
             container.appendChild(element);
         }
     }

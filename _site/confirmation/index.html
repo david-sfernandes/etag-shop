@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tag Shop · Learn With Jason</title>
+    <title>Tag Shop</title>
     <link rel="stylesheet" href="https://use.typekit.net/jwa3agu.css" />
     <link rel="stylesheet" href="/css/global.css" />
   </head>
@@ -134,7 +134,7 @@
     <a href="/" rel="home" class="home-link">
       Tag Shop
     </a>
-    <a href="#" style="justify-self: end;">
+    <a href="../cart" style="justify-self: end;">
       <button>Carrinho</button>
     </a>
   </div>
@@ -142,7 +142,23 @@
 
 
     <main>
-      
+      <div class="confirmation-page">
+    <h1>Parabéns! Sua <b>compra falsa</b> foi "concluida".</h1>
+    <p>Não espere sua compra... Ela nunca será entregue!</p>
+
+    <section class="order-details">
+        <h3>Detalhes do seu pedido</h3>
+        <h2 class="order-number" id="order-number"></h2>
+        <p>Valor total: <span class="total-basket"><b>R$ 334600,00</b></span></p>
+    </section>
+</div>
+
+<script>
+    function initialize() {
+        document.querySelector("#order-number").innerText = Math.floor(Math.random() * 10000);
+    }
+</script>
+
     </main>
 
     <style>
@@ -154,6 +170,8 @@
     position: relative;
     text-align: center;
     width: 100vw;
+    bottom: 0;
+    height: 4rem;
   }
 
   .lwj-demo-footer a {
@@ -217,7 +235,7 @@
 </style>
 
 <footer class="lwj-demo-footer">
-  <a href="#">Tag Shop</a>
+  <a href="/">Tag Shop</a>
 </footer>
 
   </body>
