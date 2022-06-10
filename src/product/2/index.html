@@ -1,0 +1,139 @@
+<style>
+    .product-section-details {
+        display: flex;
+        gap: 5rem;
+        margin: 0;
+        padding: 0;
+        justify-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 100px;
+    }
+
+    .product-section-details>div {
+        display: flex;
+    }
+
+    .product-img {
+        width: 300px;
+    }
+
+    .product-info {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .product-info button {
+        color: white;
+        background-color: var(--blue);
+        padding: 5px;
+        border: 0;
+        border-radius: 2px;
+        box-shadow: 1px 1px 3px #0c0c0c7a;
+        font-weight: 600;
+    }
+
+    .qty-box {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .qty-box input {
+        width: 45px;
+        height: 35px;
+    }
+</style>
+<div class="product-page">
+    <template class="product-info-template">
+        <section class="product-section-details">
+            <div class="img-box">
+                <img src="" alt="" class="product-img">
+            </div>
+            <div class="product-info">
+                <h1 class="product-name"></h1>
+                <h4 class="product-price"></h4>
+                <div class="qty-box">
+                    <p>Quantidade:</p>
+                    <input type="number" name="qty" id="qty" value="1">
+                </div>
+                <button>Adicionar ao carrinho</button>
+            </div>
+        </section>
+        <section class="product-section-description">
+            <h2>Descrição</h2>
+            <div class="product-description"></div>
+            <div>
+                <p><b>What is Lorem Ipsum?</b></p>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br> Lorem Ipsum has been
+                    the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and
+                    scrambled it to make a type specimen book.</p>
+                It has survived not only five centuries, but also the leap
+                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                software like Aldus PageMaker including versions of Lorem Ipsum.
+            </div>
+        </section>
+    </template>
+
+    <section class="product-section-details">
+        <div class="img-box">
+            <img src="https://raw.githubusercontent.com/david-sfernandes/productimage/master/cadeira-metalica.jpg"
+                alt="cadeira metálica" class="product-img">
+        </div>
+        <div class="product-info">
+            <h1 class="product-name">CADEIRA METÁLICA</h1>
+            <h4 class="product-price">R$ 18000,00</h4>
+            <div class="qty-box">
+                <p>Quantidade:</p>
+                <input type="number" name="qty" id="qty" value="1">
+            </div>
+            <button>Adicionar ao carrinho</button>
+        </div>
+    </section>
+    <section class="product-section-description">
+        <h2>Descrição</h2>
+        <div class="product-description">Cadeira feita em metal na cor preta.</div>
+        <div>
+            <p><b>What is Lorem Ipsum?</b></p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br> Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book.</p>
+            It has survived not only five centuries, but also the leap
+            into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+            release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+            software like Aldus PageMaker including versions of Lorem Ipsum.
+        </div>
+    </section>
+</div>
+
+<script>
+    async function initialize() {
+        // const url = new URL(location.href);
+        // const pid = url.searchParams.get("p");
+
+        const container = document.querySelector(".product-page");
+        const template = document.querySelector(".product-info-template");
+        const element = template.content.cloneNode(true);
+
+        const product = await fetch(`/.netlify/functions/product-by-id?id=${2}`)
+            .then((response) => response.json())
+            .then((res) => displayProduct(res))
+            .catch((e) => console.error(e));
+
+
+        function displayProduct(product) {
+            element.querySelector(".product-img").src = product.img;
+            element.querySelector(".product-img").alt = product.name;
+
+            element.querySelector(".product-name").innerText = product.name.toUpperCase();
+            element.querySelector(".product-price").innerText = `R$ ${product.price},00`;
+            element.querySelector(".product-description").innerText = product.description;
+
+            container.appendChild(element)
+        }
+    }
+    initialize();
+</script>
