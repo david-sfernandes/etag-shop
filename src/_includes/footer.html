@@ -1,76 +1,39 @@
 <style>
-  .lwj-demo-footer {
-    background: var(--black);
-    color: var(--light-gray);
-    font-family: var(--font-family);
+  footer {
+    background: var(--primary-gray);
     padding: 1rem 5vw;
     position: relative;
     text-align: center;
     width: 100vw;
     bottom: 0;
-    height: 4rem;
+    height: 35vh;
   }
 
-  .lwj-demo-footer a {
-    color: inherit;
+  footer *{
+    color: white;
+  }
+
+  footer p{
+    font-size: 12px;
+  }
+
+  footer a {
+    font-size: 40px;
     display: block;
-    font-size: 0.75rem;
     margin: 0.5rem;
     padding: 0.5rem;
     text-decoration: none;
   }
 
-  .lwj-demo-footer a:active,
-  .lwj-demo-footer a:focus,
-  .lwj-demo-footer a:hover {
-    color: var(--pink-text);
-  }
-
-  .lwj-demo-footer .bottom-bar {
-    animation: gradient-roll 20s linear infinite alternate;
-    background-image: var(--lwj-gradient);
-    background-size: 200%;
-    border-bottom: 0.5px solid var(--light-gray);
-    bottom: 100%;
-    height: 6px;
-    left: 0;
-    position: absolute;
-    width: 100vw;
-    z-index: 5;
-  }
-
-  .lwj-demo-footer .bottom-bar::before,
-  .lwj-demo-footer .bottom-bar::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 100vw;
-  }
-
-  .lwj-demo-footer .bottom-bar::before {
-    top: 1px;
-    height: 0.5px;
-    background-color: var(--light-gray);
-  }
-
-  .lwj-demo-footer .bottom-bar::after {
-    top: 0;
-    height: 1px;
-    background-color: var(--black);
-  }
-
-  @media (min-width: 770px) {
-    .lwj-demo-footer {
-      padding-bottom: 0;
-      padding-top: 0;
-    }
-
-    .lwj-demo-footer a {
-      display: inline-block;
-    }
+  footer a:active,
+  footer a:focus,
+  footer a:hover {
+    color: white;
   }
 </style>
 
-<footer class="lwj-demo-footer">
+<footer>
   <a href="/">{{meta.title}}</a>
+  <h4>Atenção! Ambiente para teste.</h4>
+  <p>Nenhuma compra realizada neste site é valida/real.</p>
 </footer>

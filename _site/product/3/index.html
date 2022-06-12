@@ -1,4 +1,67 @@
-<div class="product-page">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tagshop</title>
+    <link rel="stylesheet" href="https://use.typekit.net/jwa3agu.css" />
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Radio+Canada:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+  </head>
+  <body>
+    <style>
+  header {
+    height: 100px;
+    width: 100vw;
+    background-color: transparent;
+    color: white;
+    display: grid;
+    align-items: center;
+    padding-inline: 6vw;
+    grid-template-columns: 1fr 0fr;
+    align-content: center;
+  }
+
+  header a:visited,
+  header a:link {
+    text-decoration: none;
+    color: var(--primary-gray);
+    z-index: 2;
+  }
+
+  .home-link {
+    font-size: 40px;
+  }
+
+  .btn-bag {
+    --box-dimension: 40px;
+    width: var(--box-dimension);
+    height: var(--box-dimension);
+  }
+
+  .img-bag {
+    width: 100%;
+    height: 100%;
+    filter: invert(var(--header-filter));
+  }
+  
+</style>
+
+<header>
+  <a href="/" rel="home" class="home-link">
+    tagshop
+  </a>
+  <a href="../cart" class="btn-bag">
+    <img class="img-bag" src="../../images/bag.svg" alt="bag">
+  </a>
+</header>
+
+    <!-- Content -->
+    <main>
+      <div class="product-page">
     <template class="product-info-template">
         <section class="product-section-details">
             <div class="img-box">
@@ -42,7 +105,7 @@
         const template = document.querySelector(".product-info-template");
         const element = template.content.cloneNode(true);
 
-        const product = await fetch(`/.netlify/functions/product-by-id?id=${2}`)
+        const product = await fetch(`/.netlify/functions/product-by-id?id=${3}`)
             .then((response) => response.json())
             .then((res) => displayProduct(res))
             .catch((e) => console.error(e));
@@ -61,3 +124,47 @@
     }
     initialize();
 </script>
+    </main>
+
+    <style>
+  footer {
+    background: var(--primary-gray);
+    padding: 1rem 5vw;
+    position: relative;
+    text-align: center;
+    width: 100vw;
+    bottom: 0;
+    height: 35vh;
+  }
+
+  footer *{
+    color: white;
+  }
+
+  footer p{
+    font-size: 12px;
+  }
+
+  footer a {
+    font-size: 40px;
+    display: block;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    text-decoration: none;
+  }
+
+  footer a:active,
+  footer a:focus,
+  footer a:hover {
+    color: white;
+  }
+</style>
+
+<footer>
+  <a href="/">tagshop</a>
+  <h4>Atenção! Ambiente para teste.</h4>
+  <p>Nenhuma compra realizada neste site é valida/real.</p>
+</footer>
+
+  </body>
+</html>

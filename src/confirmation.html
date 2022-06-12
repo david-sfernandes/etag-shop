@@ -1,17 +1,30 @@
+<style>
+    .confirmation-page {
+        min-height: 80vh;
+        padding: var(--default-padding);
+    }
+    h1, h2, h3, h4 {
+        padding-bottom: 1rem;
+    }
+    p {
+        padding-bottom: 0.5rem;
+    }
+</style>
 <div class="confirmation-page">
-    <h1>Parabéns! Sua <b>compra falsa</b> foi "concluida".</h1>
-    <p>Não espere sua compra... Ela nunca será entregue!</p>
+    <h1>Parabéns! Sua compra <b><u>falsa</u></b> foi "concluida".</h1>
+    <p>Não espere sua compra... Ela nunca será entregue! <br><br></p>
 
     <section class="order-details">
-        <h3>Detalhes do seu pedido</h3>
-        <h2 class="order-number" id="order-number"></h2>
+        <h2>Detalhes do seu pedido</h2>
+        <p>Order number:</p>
+        <h4 class="order-number" id="order-number"></h4>
         <p>Valor total: <span class="total-basket"><b>R$ 334600,00</b></span></p>
     </section>
 </div>
 
 <script>
     function initialize() {
-        document.querySelector("#order-number").innerText = Math.floor(Math.random() * 10000);
+        document.querySelector("#order-number").innerText = Math.floor(Math.random() * 100000);
     }
     initialize()
 </script>

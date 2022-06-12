@@ -1,24 +1,87 @@
 <style>
+  :root{
+    --header-filter: 0;
+  }
+  section {
+    min-height: 90vh;
+  }
+
+  .initial-banner {
+    width: 100vw;
+    margin-top: -100px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    background-color: #80808024;
+  }
+
+  .initial-banner-text {
+    margin: auto;
+    position: relative;
+    width: 70vw;
+    padding: 0px 6vw;
+  }
+
+  .initial-banner-text h1 {
+    font-size: 35px;
+  }
+
+  .initial-banner-img {
+    --img-dimension: 450px;
+    width: var(--img-dimension);
+    height: var(--img-dimension);
+    margin-bottom: -395px;
+    margin-left: -280px;
+    z-index: 2;
+  }
+
+  .blob {
+    position: absolute;
+    background: var(--primary-gray);
+    height: 90vh;
+    width: 35vw;
+    z-index: 1;
+    right: 0;
+  }
+
   .products {
     display: grid;
     gap: 6rem 2rem;
-    grid-template-columns: repeat(auto-fill, 300px);
+    grid-template-columns: repeat(auto-fill, 320px);
     justify-content: center;
+    padding: 5rem 2rem;
   }
 
   .product {
     display: flex;
     flex-direction: column;
-    max-width: 90vw;
+    padding: 10px;
+    width: 320px;
+    align-content: center;
+    gap: 0.5rem;
+    transition-delay: .3s;
+    padding-bottom: 1.1rem;
+  }
+
+  .product:hover {
+    background-color: rgb(128 128 128 / 20%);
+    box-shadow: 4px 4px 9px #0c0c0c40;
+  }
+
+
+  .product .product-img-filter {
+    width: 300px;
+    height: 350px;
+    overflow: hidden;
   }
 
   .product img {
-    display: block;
+    min-height: 100%;
     width: 100%;
-  }
-
-  .product h2 {
-    margin: 0.5rem 0 0;
+    object-fit: cover;
+    object-position: top right;
+    margin: auto;
   }
 
   .product h3 {
@@ -35,47 +98,54 @@
   }
 </style>
 
-<h1>Tag Shop</h1>
-
-<div class="products">
-
+<section class="initial-banner">
+  <div class="initial-banner-text">
+    <h1>Procurando móvel novo?</h1>
+    <h3>Na tagshop você não encontra!</h3>
+    <p>Tagshop! Seu fake-commerce favorito.</p>
+  </div>
+  <img class="initial-banner-img" src="./images/oak-chair.png" alt="">
+  <div class="blob"></div>
+</section>
+<section class="products">
   <template class="product-template">
     <div class="product">
-      <img src="" alt="">
-
       <a href="#" style="text-decoration: none;">
+        <div class="product-img-filter">
+          <img src="" alt="">
+        </div>
+
+
         <h2></h2>
         <h4></h4>
-      
-        <button>Detalhes</button>
       </a>
     </div>
+
   </template>
+</section>
 
-  <script>
-    async function initialize() {
-      const products = await fetch('/.netlify/functions/products')
-        .then((response) => response.json());
+<script>
+  async function initialize() {
+    const products = await fetch('/.netlify/functions/products')
+      .then((response) => response.json());
 
-      const container = document.querySelector('.products');
-      const template = document.querySelector('.product-template');
+    const container = document.querySelector('.products');
+    const template = document.querySelector('.product-template');
 
-      products.forEach(product => {
-        const element = template.content.cloneNode(true);
+    products.forEach(product => {
+      const element = template.content.cloneNode(true);
 
-        const img = element.querySelector('img');
-        img.src = product.img;
-        img.alt = product.name;
+      const img = element.querySelector('img');
+      img.src = product.img;
+      img.alt = product.name;
 
-        element.querySelector('h2').innerText = product.name.toUpperCase() ;
-        element.querySelector('h4').innerText = `R$ ${product.price},00`;
-        element.querySelector('a').href = `../product?p=${product.id}`
+      element.querySelector('h2').innerText = product.name.toUpperCase();
+      element.querySelector('h4').innerText = `R$ ${product.price},00`;
+      element.querySelector('a').href = `../product/${product.id}`
 
-        container.appendChild(element);
-      });
-    }
+      container.appendChild(element);
+    });
+  }
 
-    initialize()
-  </script>
-
-</div>
+  initialize()
+</script>

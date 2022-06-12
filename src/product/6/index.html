@@ -42,7 +42,7 @@
         const template = document.querySelector(".product-info-template");
         const element = template.content.cloneNode(true);
 
-        const product = await fetch(`/.netlify/functions/product-by-id?id=${2}`)
+        const product = await fetch(`/.netlify/functions/product-by-id?id=${6}`)
             .then((response) => response.json())
             .then((res) => displayProduct(res))
             .catch((e) => console.error(e));

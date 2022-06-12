@@ -3,166 +3,148 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tag Shop</title>
+    <title>tagshop</title>
     <link rel="stylesheet" href="https://use.typekit.net/jwa3agu.css" />
     <link rel="stylesheet" href="/css/global.css" />
-    <script async="async" type="text/javascript" src="https://s3.amazonaws.com/files.etagdigital.com.br/0D18335E-C94E-4ADC-8AE1-F9D5921CC3E1.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Radio+Canada:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
   </head>
   <body>
     <style>
-  .lwj-demo-header {
-    background: var(--black);
-    font-family: var(--font-family);
-    position: relative;
+  header {
+    height: 100px;
     width: 100vw;
-  }
-
-  .lwj-demo-header button {
-    padding: 4px 7px;
-    border-radius: 6px;
-    border: 0;
-    font-weight: 600;
-  }
-
-  .lwj-demo-header button:hover {
-    background-color: gainsboro;
-  }
-
-  .lwj-demo-header .logo-wrapper {
+    background-color: transparent;
+    color: white;
     display: grid;
-    height: 56px;
-    padding: 0 1rem;
-    position: relative;
-    width: 100vw;
-    grid-template-columns: auto 100px;
     align-items: center;
+    padding-inline: 6vw;
+    grid-template-columns: 1fr 0fr;
+    align-content: center;
   }
 
-  .lwj-demo-header .logo {
-    display: block;
-    height: auto;
-    position: relative;
-    transform: rotate(-3deg);
-    transition: transform 250ms ease-out;
-    width: 55px;
-    z-index: 15;
-  }
-
-  .lwj-demo-header .logo::after {
-    background: var(--white);
-    border: 1px solid var(--dark-gray);
-    border-radius: 0.25rem;
-    color: var(--dark-gray);
-    content: 'Check out Learn With Jason!';
-    display: block;
-    left: -0.5rem;
-    opacity: 0;
-    padding: 0.5rem;
-    position: absolute;
-    text-align: center;
-    top: 98%;
-    transition: opacity 300ms linear;
-    width: 230px;
-  }
-
-  .lwj-demo-header .logo:active,
-  .lwj-demo-header .logo:focus,
-  .lwj-demo-header .logo:hover {
-    transform: rotate(0deg);
-  }
-
-  .lwj-demo-header .logo:active::after,
-  .lwj-demo-header .logo:focus::after,
-  .lwj-demo-header .logo:hover::after {
-    opacity: 1;
-  }
-
-  .lwj-demo-header .logo img {
-    display: block;
-    width: 100%;
-  }
-
-  .lwj-demo-header .home-link {
-    color: var(--white);
-    font-size: 1rem;
-    font-weight: 900;
-    margin-left: 0.75rem;
-    position: relative;
+  header a:visited,
+  header a:link {
     text-decoration: none;
-    z-index: 15;
+    color: var(--primary-gray);
+    z-index: 2;
   }
 
-  .lwj-demo-header #canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
+  .home-link {
+    font-size: 40px;
   }
 
-  .lwj-demo-header .top-bar {
-    background-color: var(--blue);
-    border-bottom: 0.5px solid var(--light-gray);
-    height: 5px;
-    position: relative;
-    top: 100%;
-    width: 100vw;
-    z-index: 5;
+  .btn-bag {
+    --box-dimension: 40px;
+    width: var(--box-dimension);
+    height: var(--box-dimension);
   }
 
-  .lwj-demo-header .top-bar::before,
-  .lwj-demo-header .top-bar::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 100vw;
+  .img-bag {
+    width: 100%;
+    height: 100%;
+    filter: invert(var(--header-filter));
   }
-
-  .lwj-demo-header .top-bar::before {
-    bottom: 1px;
-    height: 0.5px;
-    background-color: var(--light-gray);
-  }
-
-  .lwj-demo-header .top-bar::after {
-    bottom: 0;
-    height: 1px;
-    background-color: var(--black);
-  }
+  
 </style>
 
-<header class="lwj-demo-header">
-  <div class="logo-wrapper">
-    <a href="/" rel="home" class="home-link">
-      Tag Shop
-    </a>
-    <a href="../cart" style="justify-self: end;">
-      <button>Carrinho</button>
-    </a>
-  </div>
+<header>
+  <a href="/" rel="home" class="home-link">
+    tagshop
+  </a>
+  <a href="../cart" class="btn-bag">
+    <img class="img-bag" src="../../images/bag.svg" alt="bag">
+  </a>
 </header>
 
-
+    <!-- Content -->
     <main>
       <style>
+  :root{
+    --header-filter: 0;
+  }
+  section {
+    min-height: 90vh;
+  }
+
+  .initial-banner {
+    width: 100vw;
+    margin-top: -100px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    background-color: #80808024;
+  }
+
+  .initial-banner-text {
+    margin: auto;
+    position: relative;
+    width: 70vw;
+    padding: 0px 6vw;
+  }
+
+  .initial-banner-text h1 {
+    font-size: 35px;
+  }
+
+  .initial-banner-img {
+    --img-dimension: 450px;
+    width: var(--img-dimension);
+    height: var(--img-dimension);
+    margin-bottom: -395px;
+    margin-left: -280px;
+    z-index: 2;
+  }
+
+  .blob {
+    position: absolute;
+    background: var(--primary-gray);
+    height: 90vh;
+    width: 35vw;
+    z-index: 1;
+    right: 0;
+  }
+
   .products {
     display: grid;
     gap: 6rem 2rem;
-    grid-template-columns: repeat(auto-fill, 300px);
+    grid-template-columns: repeat(auto-fill, 320px);
     justify-content: center;
+    padding: 5rem 2rem;
   }
 
   .product {
     display: flex;
     flex-direction: column;
-    max-width: 90vw;
+    padding: 10px;
+    width: 320px;
+    align-content: center;
+    gap: 0.5rem;
+    transition-delay: .3s;
+    padding-bottom: 1.1rem;
+  }
+
+  .product:hover {
+    background-color: rgb(128 128 128 / 20%);
+    box-shadow: 4px 4px 9px #0c0c0c40;
+  }
+
+
+  .product .product-img-filter {
+    width: 300px;
+    height: 350px;
+    overflow: hidden;
   }
 
   .product img {
-    display: block;
+    min-height: 100%;
     width: 100%;
-  }
-
-  .product h2 {
-    margin: 0.5rem 0 0;
+    object-fit: cover;
+    object-position: top right;
+    margin: auto;
   }
 
   .product h3 {
@@ -179,127 +161,97 @@
   }
 </style>
 
-<h1>Tag Shop</h1>
-
-<div class="products">
-
+<section class="initial-banner">
+  <div class="initial-banner-text">
+    <h1>Procurando móvel novo?</h1>
+    <h3>Na tagshop você não encontra!</h3>
+    <p>Tagshop! Seu fake-commerce favorito.</p>
+  </div>
+  <img class="initial-banner-img" src="./images/oak-chair.png" alt="">
+  <div class="blob"></div>
+</section>
+<section class="products">
   <template class="product-template">
     <div class="product">
-      <img src="" alt="">
-
       <a href="#" style="text-decoration: none;">
+        <div class="product-img-filter">
+          <img src="" alt="">
+        </div>
+
+
         <h2></h2>
         <h4></h4>
-      
-        <button>Detalhes</button>
       </a>
     </div>
+
   </template>
+</section>
 
-  <script>
-    async function initialize() {
-      const products = await fetch('/.netlify/functions/products')
-        .then((response) => response.json());
+<script>
+  async function initialize() {
+    const products = await fetch('/.netlify/functions/products')
+      .then((response) => response.json());
 
-      const container = document.querySelector('.products');
-      const template = document.querySelector('.product-template');
+    const container = document.querySelector('.products');
+    const template = document.querySelector('.product-template');
 
-      products.forEach(product => {
-        const element = template.content.cloneNode(true);
+    products.forEach(product => {
+      const element = template.content.cloneNode(true);
 
-        const img = element.querySelector('img');
-        img.src = product.img;
-        img.alt = product.name;
+      const img = element.querySelector('img');
+      img.src = product.img;
+      img.alt = product.name;
 
-        element.querySelector('h2').innerText = product.name.toUpperCase() ;
-        element.querySelector('h4').innerText = `R$ ${product.price},00`;
-        element.querySelector('a').href = `../product?p=${product.id}`
+      element.querySelector('h2').innerText = product.name.toUpperCase();
+      element.querySelector('h4').innerText = `R$ ${product.price},00`;
+      element.querySelector('a').href = `../product/${product.id}`
 
-        container.appendChild(element);
-      });
-    }
+      container.appendChild(element);
+    });
+  }
 
-    initialize()
-  </script>
-
-</div>
+  initialize()
+</script>
     </main>
 
     <style>
-  .lwj-demo-footer {
-    background: var(--black);
-    color: var(--light-gray);
-    font-family: var(--font-family);
+  footer {
+    background: var(--primary-gray);
     padding: 1rem 5vw;
     position: relative;
     text-align: center;
     width: 100vw;
     bottom: 0;
-    height: 4rem;
+    height: 35vh;
   }
 
-  .lwj-demo-footer a {
-    color: inherit;
+  footer *{
+    color: white;
+  }
+
+  footer p{
+    font-size: 12px;
+  }
+
+  footer a {
+    font-size: 40px;
     display: block;
-    font-size: 0.75rem;
     margin: 0.5rem;
     padding: 0.5rem;
     text-decoration: none;
   }
 
-  .lwj-demo-footer a:active,
-  .lwj-demo-footer a:focus,
-  .lwj-demo-footer a:hover {
-    color: var(--pink-text);
-  }
-
-  .lwj-demo-footer .bottom-bar {
-    animation: gradient-roll 20s linear infinite alternate;
-    background-image: var(--lwj-gradient);
-    background-size: 200%;
-    border-bottom: 0.5px solid var(--light-gray);
-    bottom: 100%;
-    height: 6px;
-    left: 0;
-    position: absolute;
-    width: 100vw;
-    z-index: 5;
-  }
-
-  .lwj-demo-footer .bottom-bar::before,
-  .lwj-demo-footer .bottom-bar::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 100vw;
-  }
-
-  .lwj-demo-footer .bottom-bar::before {
-    top: 1px;
-    height: 0.5px;
-    background-color: var(--light-gray);
-  }
-
-  .lwj-demo-footer .bottom-bar::after {
-    top: 0;
-    height: 1px;
-    background-color: var(--black);
-  }
-
-  @media (min-width: 770px) {
-    .lwj-demo-footer {
-      padding-bottom: 0;
-      padding-top: 0;
-    }
-
-    .lwj-demo-footer a {
-      display: inline-block;
-    }
+  footer a:active,
+  footer a:focus,
+  footer a:hover {
+    color: white;
   }
 </style>
 
-<footer class="lwj-demo-footer">
-  <a href="/">Tag Shop</a>
+<footer>
+  <a href="/">tagshop</a>
+  <h4>Atenção! Ambiente para teste.</h4>
+  <p>Nenhuma compra realizada neste site é valida/real.</p>
 </footer>
 
   </body>
