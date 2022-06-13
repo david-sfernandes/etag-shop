@@ -54,7 +54,7 @@
   <a href="/" rel="home" class="home-link">
     tagshop
   </a>
-  <a href="../cart" class="btn-bag">
+  <a href="../../cart" class="btn-bag">
     <img class="img-bag" src="../../images/bag.svg" alt="bag">
   </a>
 </header>
@@ -158,6 +158,13 @@
 
   .product button:hover {
     filter: grayscale(0.5);
+  }
+
+  @media screen and (max-width: 480) {
+    .initial-banner-img {
+      --img-dimension: 400px;
+      margin-bottom: -400px;
+    }
   }
 </style>
 
